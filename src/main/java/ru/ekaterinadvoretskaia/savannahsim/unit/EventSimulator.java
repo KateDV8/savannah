@@ -26,6 +26,7 @@ public class EventSimulator {
             energy = 100;
         }
         zebra.setEnergy(energy);
+        checkEnergy(zebra);
         System.out.println("zebra sleep. +40 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -36,6 +37,7 @@ public class EventSimulator {
             energy = 0;
         }
         zebra.setEnergy(energy);
+        checkEnergy(zebra);
         System.out.println("zebra walk a long distance. -10 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
 
     }
@@ -53,6 +55,7 @@ public class EventSimulator {
         }
         zebra.setEnergy(energy);
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra eat grass.  - 3 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -69,6 +72,7 @@ public class EventSimulator {
         }
         zebra.setEnergy(energy);
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra drink water. -2 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -80,6 +84,7 @@ public class EventSimulator {
             energy = 0;
         }
         zebra.setEnergy(energy);
+        checkEnergy(zebra);
         System.out.println("zebra dig a hole. - 5 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
         drinkWaterEvent(zebra);
     }
@@ -92,6 +97,7 @@ public class EventSimulator {
             health = 0;
         }
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra meet a lion. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -103,6 +109,7 @@ public class EventSimulator {
             health = 0;
         }
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra meet a cheetah. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -114,6 +121,7 @@ public class EventSimulator {
             health = 0;
         }
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra meet a leopard. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -125,6 +133,7 @@ public class EventSimulator {
             health = 0;
         }
         zebra.setHealth(health);
+        checkEnergy(zebra);
         System.out.println("zebra meet a hyena. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
@@ -136,10 +145,11 @@ public class EventSimulator {
             energy = 0;
         }
         zebra.setEnergy(energy);
+        checkEnergy(zebra);
         System.out.println("zebra escape from a predator. -20 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
-    private boolean checkStatus (Zebra zebra) {
+    private boolean checkStatus(Zebra zebra) {
         if (zebra.getHealth() <= 0) {
             return false;
         } else {
