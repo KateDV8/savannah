@@ -10,7 +10,7 @@ public class EventSimulator {
     // 70-75  +5. zebra dig a hole - 5 energy
     // 75-80  +6. zebra meet a lion -20 health
     // 80-85  +7. zebra meet a cheetah -20 health
-    // 85-90  8. zebra meet a leopard -20 health
+    // 85-90  +8. zebra meet a leopard -20 health
     // 90-95  9. zebra meet a hyena -20 health
     // 95-100 10. zebra escape from a predator -20 energy
     //   if energy = 0 then  -10 health
@@ -115,5 +115,16 @@ public class EventSimulator {
         }
         zebra.setHealth(health);
         System.out.println("zebra meet a leopard. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+    }
+
+    // 90-95  9. zebra meet a hyena -20 health
+    private void meetHyenaEvent(Zebra zebra) {
+        int health = zebra.getHealth();
+        health = health - 20;
+        if (health <= 0) {
+            health = 0;
+        }
+        zebra.setHealth(health);
+        System.out.println("zebra meet a hyena. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 }
