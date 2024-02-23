@@ -4,9 +4,9 @@ import ru.ekaterinadvoretskaia.savannahsim.entity.Zebra;
 
 public class EventSimulator {
     // 0-20   +1.  zebra sleep +40 energy
-    // 20-30  2. zebra walk a long distance -10 energy
-    // 30-60  3. zebra eat grass  - 3 energy, + коэф*10 health
-    // 60-70  4. zebra drink water  -2 energy, + коэф*8 health
+    // 20-30  +2. zebra walk a long distance -10 energy
+    // 30-60  +3. zebra eat grass  - 3 energy, + коэф*10 health
+    // 60-70  +4. zebra drink water  -2 energy, + коэф*8 health
     // 70-75  5. zebra dig a hole - 5 health
     // 75-80  6. zebra meet a lion -20 health
     // 80-85  7. zebra meet a cheetah -20 health
@@ -55,5 +55,21 @@ public class EventSimulator {
         zebra.setHealth(health);
         System.out.println("zebra eat grass.  - 3 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
+    private void drinkWaterEvent(Zebra zebra) {
+        int energy = zebra.getEnergy();
+        int health = zebra.getHealth();
+        energy = energy - 2;
+        if (energy < 0) {
+            energy = 0;
+        }
+        health = health + (int) (zebra.getCOEF() * 8);
+        if (health > 100) {
+            health = 100;
+        }
+        zebra.setEnergy(energy);
+        zebra.setHealth(health);
+        System.out.println("zebra drink water  -2 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+    }
+
 
 }
