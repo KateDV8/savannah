@@ -4,30 +4,28 @@ public class Zebra {
     // 100 hp
     // 100 energy
     // coefficient *
-
     private int health = 100;
     private int energy = 100;
-    private final double COEF = 2.5;
+    private final double FANGS = 2.5;
 
 
-    public int setHealth(int health) {
-
-        return health;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getHealth() {
         return this.health;
     }
 
-    public int setEnergy(int energy) {
-        return energy;
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
     public int getEnergy() {
         return this.energy;
     }
 
-    public double getCOEF() {
-        return this.COEF;
+    public double getFANGS() {
+        return this.FANGS;
     }
 }

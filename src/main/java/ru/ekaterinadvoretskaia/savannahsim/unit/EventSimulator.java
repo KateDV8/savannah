@@ -3,15 +3,15 @@ package ru.ekaterinadvoretskaia.savannahsim.unit;
 import ru.ekaterinadvoretskaia.savannahsim.entity.Zebra;
 
 public class EventSimulator {
-    // 0-20   +1.  zebra sleep +10 energy
+    // 0-20  +1.  zebra sleep +10 energy
     // 20-30  +2. zebra walk a long distance -20 energy
-    // 30-60  +3. zebra eat grass  - 3 energy, + коэф*10 health
-    // 60-70  +4. zebra drink water  -2 energy, + коэф*8 health
-    // 70-75  +5. zebra dig a hole - 5 energy
-    // 75-80  +6. zebra meet a lion -20 health
-    // 80-85  +7. zebra meet a cheetah -20 health
-    // 85-90  +8. zebra meet a leopard -20 health
-    // 90-95  +9. zebra meet a hyena -20 health
+    // 30-50  +3. zebra eat grass  - 5 energy, + коэф*5 health
+    // 50-55  +4. zebra drink water  -4 energy, + коэф*4 health
+    // 55-60  +5. zebra dig a hole - 5 energy
+    // 60-65  +6. zebra meet a lion -20 health
+    // 65-75  +7. zebra meet a cheetah -20 health
+    // 75-85  +8. zebra meet a leopard -20 health
+    // 85-95  +9. zebra meet a hyena -20 health
     // 95-100 +10. zebra escape from a predator -20 energy
     //   if energy = 0 then  -10 health
 
@@ -22,19 +22,19 @@ public class EventSimulator {
                 sleepEvent(zebra);
             } else if (eventNum >= 20 && eventNum < 30) {
                 walkEvent(zebra);
-            } else if (eventNum >= 30 && eventNum < 60) {
+            } else if (eventNum >= 30 && eventNum < 50) {
                 eatGrassEvent(zebra);
-            } else if (eventNum >= 60 && eventNum < 70) {
+            } else if (eventNum >= 50 && eventNum < 55) {
                 drinkWaterEvent(zebra);
-            } else if (eventNum >= 70 && eventNum < 75) {
+            } else if (eventNum >= 55 && eventNum < 60) {
                 digHoleEvent(zebra);
-            } else if (eventNum >= 75 && eventNum < 80) {
+            } else if (eventNum >= 60 && eventNum < 65) {
                 meetLionEvent(zebra);
-            } else if (eventNum >= 80 && eventNum < 85) {
+            } else if (eventNum >= 65 && eventNum < 75) {
                 meetCheetahEvent(zebra);
-            } else if (eventNum >= 85 && eventNum < 90) {
+            } else if (eventNum >= 75 && eventNum < 85) {
                 meetLeopardEvent(zebra);
-            } else if (eventNum >= 90 && eventNum < 95) {
+            } else if (eventNum >= 85 && eventNum < 95) {
                 meetHyenaEvent(zebra);
             } else if (eventNum >= 95 && eventNum <= 100) {
                 escapeEvent(zebra);
@@ -72,11 +72,11 @@ public class EventSimulator {
     private void eatGrassEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         int health = zebra.getHealth();
-        energy = energy - 3;
+        energy = energy - 5;
         if (energy < 0) {
             energy = 0;
         }
-        health = health + (int) (zebra.getCOEF() * 10);
+        health = health + (int) (zebra.getFANGS() * 5);
         if (health > 100) {
             health = 100;
         }
@@ -89,11 +89,11 @@ public class EventSimulator {
     private void drinkWaterEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         int health = zebra.getHealth();
-        energy = energy - 2;
+        energy = energy - 4;
         if (energy < 0) {
             energy = 0;
         }
-        health = health + (int) (zebra.getCOEF() * 8);
+        health = health + (int) (zebra.getFANGS() * 4);
         if (health > 100) {
             health = 100;
         }
@@ -177,6 +177,7 @@ public class EventSimulator {
     }
 
     private boolean checkStatus(Zebra zebra) {
+        System.out.println("hp: " + zebra.getHealth() + " energy: " + zebra.getEnergy());
         if (zebra.getHealth() <= 0) {
             return false;
         } else {
