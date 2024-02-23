@@ -7,7 +7,7 @@ public class EventSimulator {
     // 20-30  +2. zebra walk a long distance -10 energy
     // 30-60  +3. zebra eat grass  - 3 energy, + коэф*10 health
     // 60-70  +4. zebra drink water  -2 energy, + коэф*8 health
-    // 70-75  5. zebra dig a hole - 5 health
+    // 70-75  +5. zebra dig a hole - 5 energy
     // 75-80  6. zebra meet a lion -20 health
     // 80-85  7. zebra meet a cheetah -20 health
     // 85-90  8. zebra meet a leopard -20 health
@@ -55,6 +55,7 @@ public class EventSimulator {
         zebra.setHealth(health);
         System.out.println("zebra eat grass.  - 3 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
+
     private void drinkWaterEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         int health = zebra.getHealth();
@@ -68,8 +69,18 @@ public class EventSimulator {
         }
         zebra.setEnergy(energy);
         zebra.setHealth(health);
-        System.out.println("zebra drink water  -2 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+        System.out.println("zebra drink water. -2 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
-
+    // 70-75  5. zebra dig a hole - 5 energy
+    private void digHoleEvent(Zebra zebra) {
+        int energy = zebra.getEnergy();
+        energy = energy - 2;
+        if (energy < 0) {
+            energy = 0;
+        }
+        zebra.setEnergy();
+        System.out.println("zebra dig a hole. - 5 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+        drinkWaterEvent(zebra);
+    }
 }
