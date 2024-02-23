@@ -127,4 +127,15 @@ public class EventSimulator {
         zebra.setHealth(health);
         System.out.println("zebra meet a hyena. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
+
+    // 95-100 10. zebra escape from a predator -20 energy
+    private void escapeEvent(Zebra zebra) {
+        int energy = zebra.getEnergy();
+        energy = energy - 20;
+        if (energy <= 0) {
+            energy = 0;
+        }
+        zebra.setEnergy(energy);
+        System.out.println("zebra escape from a predator. -20 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+    }
 }
