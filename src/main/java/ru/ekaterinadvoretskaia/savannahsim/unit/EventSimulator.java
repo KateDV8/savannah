@@ -138,11 +138,23 @@ public class EventSimulator {
         zebra.setEnergy(energy);
         System.out.println("zebra escape from a predator. -20 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
+
     private boolean checkStatus (Zebra zebra) {
         if (zebra.getHealth() <= 0) {
             return false;
         } else {
             return true;
+        }
+    }
+
+    private void checkEnergy(Zebra zebra) {
+        if (zebra.getEnergy() <= 0) {
+            int health = zebra.getHealth();
+            health = health - 5;
+            if (health < 0) {
+                health = 0;
+            }
+            zebra.setHealth(health);
         }
     }
 }
