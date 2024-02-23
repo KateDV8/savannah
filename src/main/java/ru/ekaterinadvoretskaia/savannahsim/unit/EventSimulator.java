@@ -15,7 +15,7 @@ public class EventSimulator {
     // 95-100 +10. zebra escape from a predator -20 energy
     //   if energy = 0 then  -10 health
 
-    public void activateEvent(Zebra zebra) {
+    public void activateEvent(Zebra zebra) throws InterruptedException {
         while (checkStatus(zebra)) {
             int eventNum = (int) (Math.random() * 100);
             if (eventNum >= 0 && eventNum < 20) {
@@ -40,6 +40,7 @@ public class EventSimulator {
                 escapeEvent(zebra);
             }
 
+            Thread.sleep(1000);
 
         }
         System.out.println("GAME OVER");

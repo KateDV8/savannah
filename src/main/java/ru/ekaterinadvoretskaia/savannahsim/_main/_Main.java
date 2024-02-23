@@ -6,7 +6,7 @@ import ru.ekaterinadvoretskaia.savannahsim.unit.EventSimulator;
 public class _Main {
     // саванна
     // зебра ест траву пьет воду
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Zebra zebra = new Zebra();
         EventSimulator eventSimulator = new EventSimulator();
         eventSimulator.activateEvent(zebra);
