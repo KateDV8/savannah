@@ -86,13 +86,24 @@ public class EventSimulator {
 
     // 75-80  6. zebra meet a lion -20 health
     private void meetLionEvent(Zebra zebra) {
-        int health = zebra.getEnergy();
+        int health = zebra.getHealth();
         health = health - 20;
         if (health <= 0) {
             health = 0;
         }
         zebra.setHealth(health);
         System.out.println("zebra meet a lion. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+    }
+
+    // 80-85  7. zebra meet a cheetah -20 health
+    private void meetCheetahEvent(Zebra zebra) {
+        int health = zebra.getHealth();
+        health = health - 20;
+        if (health <= 0) {
+            health = 0;
+        }
+        zebra.setHealth(health);
+        System.out.println("zebra meet a cheetah. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
 
 }
