@@ -15,7 +15,34 @@ public class EventSimulator {
     // 95-100 +10. zebra escape from a predator -20 energy
     //   if energy = 0 then  -10 health
 
-    public void activateEvent() {
+    public void activateEvent(Zebra zebra) {
+        while (checkStatus(zebra)) {
+            int eventNum = (int) (Math.random() * 100);
+            if (eventNum >= 0 && eventNum < 20) {
+                sleepEvent(zebra);
+            } else if (eventNum >= 20 && eventNum < 30) {
+                walkEvent(zebra);
+            } else if (eventNum >= 30 && eventNum < 60) {
+                eatGrassEvent(zebra);
+            } else if (eventNum >= 60 && eventNum < 70) {
+                drinkWaterEvent(zebra);
+            } else if (eventNum >= 70 && eventNum < 75) {
+                digHoleEvent(zebra);
+            } else if (eventNum >= 75 && eventNum < 80) {
+                meetLionEvent(zebra);
+            } else if (eventNum >= 80 && eventNum < 85) {
+                meetCheetahEvent(zebra);
+            } else if (eventNum >= 85 && eventNum < 90) {
+                meetLeopardEvent(zebra);
+            } else if (eventNum >= 90 && eventNum < 95) {
+                meetHyenaEvent(zebra);
+            } else if (eventNum >= 95 && eventNum <= 100) {
+                escapeEvent(zebra);
+            }
+
+
+        }
+        System.out.println("GAME OVER");
 
     }
 
