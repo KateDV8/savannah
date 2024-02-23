@@ -10,17 +10,17 @@ public class Zebra {
     private final double COEF = 2.5;
 
 
-    public void setHealth(int health) {
-        return this.health;
+    public int setHealth(int health) {
 
+        return health;
     }
 
     public int getHealth() {
         return this.health;
     }
 
-    public void setEnergy(int energy) {
-        return this.energy;
+    public int setEnergy(int energy) {
+        return energy;
     }
 
     public int getEnergy() {
