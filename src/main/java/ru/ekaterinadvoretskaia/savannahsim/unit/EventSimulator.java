@@ -26,8 +26,9 @@ public class EventSimulator {
             energy = 100;
         }
         zebra.setEnergy(energy);
-        System.out.println("zebra sleep +40 energy. Energy now: " + zebra.getEnergy() + "Health now: " + zebra.getHealth());
+        System.out.println("zebra sleep. +40 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
     }
+
     private void walkEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         energy = energy - 10;
@@ -35,10 +36,24 @@ public class EventSimulator {
             energy = 0;
         }
         zebra.setEnergy(energy);
-        System.out.println("zebra walk a long distance -10 energy. Energy now: " + zebra.getEnergy() + "Health now: " + zebra.getHealth());
+        System.out.println("zebra walk a long distance. -10 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
 
     }
 
-
+    private void eatGrassEvent(Zebra zebra) {
+        int energy = zebra.getEnergy();
+        int health = zebra.getHealth();
+        energy = energy - 3;
+        if (energy < 0) {
+            energy = 0;
+        }
+        health = health + (int) (zebra.getCOEF() * 10);
+        if (health > 100) {
+            health = 100;
+        }
+        zebra.setEnergy(energy);
+        zebra.setHealth(health);
+        System.out.println("zebra eat grass.  - 3 energy, + health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
+    }
 
 }
