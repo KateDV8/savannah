@@ -3,7 +3,7 @@ package ru.ekaterinadvoretskaia.savannahsim.unit;
 import ru.ekaterinadvoretskaia.savannahsim.entity.Zebra;
 
 public class EventSimulator {
-    // 0-20   1. zebra sleep +40 energy
+    // 0-20   +1.  zebra sleep +40 energy
     // 20-30  2. zebra walk a long distance -10 energy
     // 30-60  3. zebra eat grass  - 3 energy, + коэф*10 health
     // 60-70  4. zebra drink water  -2 energy, + коэф*8 health
@@ -28,6 +28,17 @@ public class EventSimulator {
         zebra.setEnergy(energy);
         System.out.println("zebra sleep +40 energy. Energy now: " + zebra.getEnergy() + "Health now: " + zebra.getHealth());
     }
+    private void walkEvent(Zebra zebra) {
+        int energy = zebra.getEnergy();
+        energy = energy - 10;
+        if (energy < 0) {
+            energy = 0;
+        }
+        zebra.setEnergy(energy);
+        System.out.println("zebra walk a long distance -10 energy. Energy now: " + zebra.getEnergy() + "Health now: " + zebra.getHealth());
+
+    }
+
 
 
 }
