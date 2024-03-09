@@ -8,7 +8,6 @@ public class Zebra {
     private int energy = 100;
     private final double FANGS = 3.5;
 
-
     public void setHealth(int health) {
         this.health = health;
     }

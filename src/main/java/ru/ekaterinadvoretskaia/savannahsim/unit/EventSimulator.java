@@ -14,7 +14,6 @@ public class EventSimulator {
     // 85-95  +9. zebra meet a hyena -20 health
     // 95-100 +10. zebra escape from a predator -20 energy
     //   if energy = 0 then  -10 health
-
     public void activateEvent(Zebra zebra) throws InterruptedException {
         while (checkStatus(zebra)) {
             int eventNum = (int) (Math.random() * 100);
@@ -39,20 +38,15 @@ public class EventSimulator {
             } else if (eventNum >= 95 && eventNum <= 100) {
                 escapeEvent(zebra);
             }
-
             Thread.sleep(500);
-
         }
         System.out.println("GAME OVER");
-
     }
 
     private void sleepEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         energy = energy + 10;
-        if (energy > 100) {
-            energy = 100;
-        }
+        energy = impossibleValues2(energy);
         zebra.setEnergy(energy);
         checkEnergy(zebra);
         System.out.println("zebra sleep. +40 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -61,26 +55,19 @@ public class EventSimulator {
     private void walkEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         energy = energy - 20;
-        if (energy < 0) {
-            energy = 0;
-        }
+        energy = impossibleValues1(energy);
         zebra.setEnergy(energy);
         checkEnergy(zebra);
         System.out.println("zebra walk a long distance. -10 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
-
     }
 
     private void eatGrassEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         int health = zebra.getHealth();
         energy = energy - 5;
-        if (energy < 0) {
-            energy = 0;
-        }
+        energy = impossibleValues1(energy);
         health = health + (int) (zebra.getFANGS() * 10);
-        if (health > 100) {
-            health = 100;
-        }
+        health = impossibleValues2(health);
         zebra.setEnergy(energy);
         zebra.setHealth(health);
         checkEnergy(zebra);
@@ -91,13 +78,9 @@ public class EventSimulator {
         int energy = zebra.getEnergy();
         int health = zebra.getHealth();
         energy = energy - 4;
-        if (energy < 0) {
-            energy = 0;
-        }
+        energy = impossibleValues1(energy);
         health = health + (int) (zebra.getFANGS() * 8);
-        if (health > 100) {
-            health = 100;
-        }
+        health = impossibleValues2(health);
         zebra.setEnergy(energy);
         zebra.setHealth(health);
         checkEnergy(zebra);
@@ -108,9 +91,7 @@ public class EventSimulator {
     private void digHoleEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         energy = energy - 2;
-        if (energy < 0) {
-            energy = 0;
-        }
+        energy = impossibleValues1(energy);
         zebra.setEnergy(energy);
         checkEnergy(zebra);
         System.out.println("zebra dig a hole. - 5 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -121,9 +102,7 @@ public class EventSimulator {
     private void meetLionEvent(Zebra zebra) {
         int health = zebra.getHealth();
         health = health - 20;
-        if (health <= 0) {
-            health = 0;
-        }
+        health = impossibleValues1(health);
         zebra.setHealth(health);
         checkEnergy(zebra);
         System.out.println("zebra meet a lion. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -133,9 +112,7 @@ public class EventSimulator {
     private void meetCheetahEvent(Zebra zebra) {
         int health = zebra.getHealth();
         health = health - 20;
-        if (health <= 0) {
-            health = 0;
-        }
+        health = impossibleValues1(health);
         zebra.setHealth(health);
         checkEnergy(zebra);
         System.out.println("zebra meet a cheetah. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -145,9 +122,7 @@ public class EventSimulator {
     private void meetLeopardEvent(Zebra zebra) {
         int health = zebra.getHealth();
         health = health - 20;
-        if (health <= 0) {
-            health = 0;
-        }
+        health = impossibleValues1(health);
         zebra.setHealth(health);
         checkEnergy(zebra);
         System.out.println("zebra meet a leopard. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -157,9 +132,7 @@ public class EventSimulator {
     private void meetHyenaEvent(Zebra zebra) {
         int health = zebra.getHealth();
         health = health - 20;
-        if (health <= 0) {
-            health = 0;
-        }
+        health = impossibleValues1(health);
         zebra.setHealth(health);
         checkEnergy(zebra);
         System.out.println("zebra meet a hyena. -20 health. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -169,9 +142,7 @@ public class EventSimulator {
     private void escapeEvent(Zebra zebra) {
         int energy = zebra.getEnergy();
         energy = energy - 20;
-        if (energy <= 0) {
-            energy = 0;
-        }
+        energy = impossibleValues1(energy);
         zebra.setEnergy(energy);
         checkEnergy(zebra);
         System.out.println("zebra escape from a predator. -20 energy. Energy now: " + zebra.getEnergy() + " Health now: " + zebra.getHealth());
@@ -179,21 +150,30 @@ public class EventSimulator {
 
     private boolean checkStatus(Zebra zebra) {
         System.out.println("energy: " + zebra.getEnergy() + " hp: " + zebra.getHealth());
-        if (zebra.getHealth() <= 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return zebra.getHealth() > 0;
     }
 
     private void checkEnergy(Zebra zebra) {
         if (zebra.getEnergy() <= 0) {
             int health = zebra.getHealth();
             health = health - 5;
-            if (health < 0) {
-                health = 0;
-            }
+            health = impossibleValues1(health);
             zebra.setHealth(health);
         }
     }
+
+    public int impossibleValues1(int i) {
+        if (i <= 0) {
+            i = 0;
+        }
+        return i;
+    }
+
+    public int impossibleValues2(int i) {
+        if (i > 100) {
+            i = 100;
+        }
+        return i;
+    }
+
 }
