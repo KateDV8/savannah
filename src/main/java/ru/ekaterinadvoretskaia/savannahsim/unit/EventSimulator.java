@@ -3,17 +3,17 @@ package ru.ekaterinadvoretskaia.savannahsim.unit;
 import ru.ekaterinadvoretskaia.savannahsim.entity.Zebra;
 
 public class EventSimulator {
-    // 0-20  +1.  zebra sleep +10 energy
+    // 0-20   +1.  zebra sleep +10 energy
     // 20-30  +2. zebra walk a long distance -20 energy
-    // 30-50  +3. zebra eat grass  - 5 energy, + коэф*10 health
-    // 50-55  +4. zebra drink water  -4 energy, + коэф*8 health
+    // 30-50  +3. zebra eat grass  - 5 energy, + coefficient*10 health
+    // 50-55  +4. zebra drink water  -4 energy, + coefficient*8 health
     // 55-60  +5. zebra dig a hole - 5 energy
     // 60-65  +6. zebra meet a lion -20 health
     // 65-75  +7. zebra meet a cheetah -20 health
     // 75-85  +8. zebra meet a leopard -20 health
     // 85-95  +9. zebra meet a hyena -20 health
     // 95-100 +10. zebra escape from a predator -20 energy
-    //   if energy = 0 then  -10 health
+    // if energy = 0 then -10 health
     public void activateEvent(Zebra zebra) throws InterruptedException {
         while (checkStatus(zebra)) {
             int eventNum = (int) (Math.random() * 100);
