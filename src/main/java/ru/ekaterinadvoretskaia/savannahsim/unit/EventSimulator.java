@@ -35,7 +35,7 @@ public class EventSimulator {
                 meetLeopardEvent(zebra);
             } else if (eventNum >= 85 && eventNum < 95) {
                 meetHyenaEvent(zebra);
-            } else if (eventNum >= 95 && eventNum <= 100) {
+            } else if (eventNum >= 95 && eventNum < 100) {
                 escapeEvent(zebra);
             }
             Thread.sleep(500);
